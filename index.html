@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Responsive Google Map by Asif Islam</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div id="map" style="height: 300px;"></div> <!--Map Will Load inside this div-->
+				</div> <!--/.col-->
+			</div> <!--/.row-->
+		</div> <!--/.container-->
+
+		<!-- Load Google Map API Start-->
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAr5bLw3FY2R0sBlZJFeVpEZx-MHHoyCts&callback=initMap">
+        </script>
+		<!-- Load Google Map API End-->
+
+        <!-- Enable Your Map Start-->
+		<script>
+			function initMap() {
+				var mPos = {lat: 23.8443835, lng: 90.26198420000003};
+				var map = new google.maps.Map(document.getElementById('map'), {
+					zoom: 10,
+					center: mPos,
+					scrollwheel: false,
+				});
+				var marker = new google.maps.Marker({
+					position: mPos,
+					map: map,
+				});
+				var infowindow = new google.maps.InfoWindow({content:'<strong>iThemesLab</strong><br>Imandipur, Savar, Dhaka<br>'});
+				new google.maps.event.addDomListener(window, "resize", function() {
+					var center = map.getCenter();
+					google.maps.event.trigger(map, "resize");
+					map.setCenter(center);
+				});
+          		infowindow.open(map, marker);
+			}
+        </script>
+        <!-- Enable Your Map End-->
+	</body>
+</html>
